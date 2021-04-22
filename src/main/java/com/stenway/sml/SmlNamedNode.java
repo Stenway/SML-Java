@@ -1,6 +1,6 @@
 package com.stenway.sml;
 
-public class SmlNamedNode extends SmlNode {
+public abstract class SmlNamedNode extends SmlNode {
 	private String name;
 	
 	public SmlNamedNode(String name) {

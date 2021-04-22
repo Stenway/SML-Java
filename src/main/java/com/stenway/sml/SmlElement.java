@@ -21,6 +21,9 @@ public class SmlElement extends SmlNamedNode {
 	}
 
 	public String[] getEndWhitespaces() {
+		if (endWhitespaces == null) {
+			return null;
+		}
 		return endWhitespaces.clone();
 	}
 	
@@ -73,7 +76,7 @@ public class SmlElement extends SmlNamedNode {
 		return attribute;
 	}
 	
-	public SmlAttribute addAttribute(String name, byte[] values) {
+	public SmlAttribute addAttribute(String name, byte[]... values) {
 		SmlAttribute attribute = new SmlAttribute(name, values);
 		add(attribute);
 		return attribute;
@@ -115,7 +118,7 @@ public class SmlElement extends SmlNamedNode {
 		if (result.isPresent()) {
 			return result.get();
 		} else {
-			throw new RuntimeException("Element \""+getName()+"\" does not contain a \""+name+"\" attribute");
+			throw new IllegalArgumentException("Element \""+getName()+"\" does not contain a \""+name+"\" attribute");
 		}
 	}
 	
@@ -152,7 +155,7 @@ public class SmlElement extends SmlNamedNode {
 		if (result.isPresent()) {
 			return result.get();
 		} else {
-			throw new RuntimeException("Element \""+getName()+"\" does not contain a \""+name+"\" element");
+			throw new IllegalArgumentException("Element \""+getName()+"\" does not contain a \""+name+"\" element");
 		}
 	}
 	
@@ -165,11 +168,99 @@ public class SmlElement extends SmlNamedNode {
 				.isPresent();
 	}
 	
+	public String getString(String attributeName) {
+		return attribute(attributeName).getString();
+	}
+	
+	public int getInt(String attributeName) {
+		return attribute(attributeName).getInt();
+	}
+	
+	public float getFloat(String attributeName) {
+		return attribute(attributeName).getFloat();
+	}
+	
+	public double getDouble(String attributeName) {
+		return attribute(attributeName).getDouble();
+	}
+	
+	public boolean getBoolean(String attributeName) {
+		return attribute(attributeName).getBoolean();
+	}
+	
+	public byte[] getBytes(String attributeName) {
+		return attribute(attributeName).getBytes();
+	}
+	
+	public String getString(String attributeName, String defaultValue) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getString();
+		} else {
+			return defaultValue;
+		}
+	}
+	
+	public int getInt(String attributeName, int defaultValue) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getInt();
+		} else {
+			return defaultValue;
+		}
+	}
+	
+	public float getFloat(String attributeName, float defaultValue) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getFloat();
+		} else {
+			return defaultValue;
+		}
+	}
+	
 	public double getDouble(String attributeName, double defaultValue) {
 		if (hasAttribute(attributeName)) {
 			return attribute(attributeName).getDouble();
 		} else {
 			return defaultValue;
+		}
+	}
+	
+	public boolean getBoolean(String attributeName, boolean defaultValue) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getBoolean();
+		} else {
+			return defaultValue;
+		}
+	}
+	
+	public byte[] getBytes(String attributeName, byte[] defaultValues) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getBytes();
+		} else {
+			return defaultValues;
+		}
+	}
+	
+	public String getStringOrNull(String attributeName) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getString();
+		} else {
+			return null;
+		}
+	}
+	
+	public Integer getIntOrNull(String attributeName) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getInt();
+		} else {
+			return null;
+		}
+	}
+	
+	public Float getFloatOrNull(String attributeName) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getFloat();
+		} else {
+			return null;
 		}
 	}
 	
@@ -181,30 +272,94 @@ public class SmlElement extends SmlNamedNode {
 		}
 	}
 	
-	public double[] getDoubleValues(String attributeName, double[] defaultValue) {
+	public Boolean getBooleanOrNull(String attributeName) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getBoolean();
+		} else {
+			return null;
+		}
+	}
+	
+	public byte[] getBytesOrNull(String attributeName) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getBytes();
+		} else {
+			return null;
+		}
+	}
+	
+	public String[] getValues(String attributeName) {
+		return attribute(attributeName).getValues();
+	}
+	
+	public int[] getIntValues(String attributeName) {
+		return attribute(attributeName).getIntValues();
+	}
+	
+	public float[] getFloatValues(String attributeName) {
+		return attribute(attributeName).getFloatValues();
+	}
+	
+	public double[] getDoubleValues(String attributeName) {
+		return attribute(attributeName).getDoubleValues();
+	}
+	
+	public boolean[] getBooleanValues(String attributeName) {
+		return attribute(attributeName).getBooleanValues();
+	}
+	
+	public byte[][] getBytesValues(String attributeName) {
+		return attribute(attributeName).getBytesValues();
+	}
+		
+	public String[] getValues(String attributeName, String[] defaultValues) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getValues();
+		} else {
+			return defaultValues;
+		}
+	}
+	
+	public int[] getIntValues(String attributeName, int[] defaultValues) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getIntValues();
+		} else {
+			return defaultValues;
+		}
+	}
+	
+	public float[] getFloatValues(String attributeName, float[] defaultValues) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getFloatValues();
+		} else {
+			return defaultValues;
+		}
+	}
+	
+	public double[] getDoubleValues(String attributeName, double[] defaultValues) {
 		if (hasAttribute(attributeName)) {
 			return attribute(attributeName).getDoubleValues();
 		} else {
-			return defaultValue;
+			return defaultValues;
 		}
 	}
 	
-	public String getString(String attributeName, String defaultValue) {
+	public boolean[] getBooleanValues(String attributeName, boolean[] defaultValues) {
 		if (hasAttribute(attributeName)) {
-			return attribute(attributeName).getString();
+			return attribute(attributeName).getBooleanValues();
 		} else {
-			return defaultValue;
+			return defaultValues;
 		}
 	}
 	
-	public String getString(String attributeName) {
-		return attribute(attributeName).getString();
+	public byte[][] getBytesValues(String attributeName, byte[][] defaultValues) {
+		if (hasAttribute(attributeName)) {
+			return attribute(attributeName).getBytesValues();
+		} else {
+			return defaultValues;
+		}
 	}
 	
-	public String[] getStringValues(String attributeName) {
-		return attribute(attributeName).getValues();
-	}
-
 	@Override
 	public String toString() {
 		return SmlSerializer.serializeElement(this);

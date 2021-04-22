@@ -10,7 +10,7 @@ public class SmlStreamReader implements AutoCloseable {
 	WsvStreamReader reader;
 	final String endKeyword;
 	public final SmlElement Root;
-	SmlParser.WsvStreamLineIterator iterator;
+	WsvStreamLineIterator iterator;
 	
 	public final ArrayList<SmlEmptyNode> EmptyNodesBefore = new ArrayList<>();
 	
@@ -26,7 +26,7 @@ public class SmlStreamReader implements AutoCloseable {
 		}
 		this.endKeyword = endKeyword;
 		
-		iterator = new SmlParser.WsvStreamLineIterator(reader, endKeyword);
+		iterator = new WsvStreamLineIterator(reader, endKeyword);
 		
 		Root = SmlParser.readRootElement(iterator, EmptyNodesBefore);
 	}

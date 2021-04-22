@@ -11,6 +11,18 @@ public class Assert {
 		assertArrayEquals(expected, actual);
 	}
 	
+	public static void array_equals(float[] actual, float[] expected) {
+		assertArrayEquals(expected, actual, 0);
+	}
+	
+	public static void array_equals(double[] actual, double[] expected) {
+		assertArrayEquals(expected, actual, 0);
+	}
+	
+	public static void array_equals(boolean[] actual, boolean[] expected) {
+		assertArrayEquals(expected, actual);
+	}
+	
 	public static void array_equals(Object[] actual, Object[] expected) {
 		assertArrayEquals(expected, actual);
 	}

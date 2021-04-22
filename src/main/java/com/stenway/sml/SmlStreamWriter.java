@@ -18,6 +18,18 @@ public class SmlStreamWriter implements AutoCloseable {
 	public final ReliableTxtEncoding Encoding;
 	public final boolean AppendMode;
 	
+	public SmlStreamWriter(SmlDocument template, String filePath) throws IOException, Exception {
+		this(template, filePath, null, false);
+	}
+	
+	public SmlStreamWriter(SmlDocument template, String filePath, boolean append) throws IOException, Exception {
+		this(template, filePath, null, append);
+	}
+	
+	public SmlStreamWriter(SmlDocument template, String filePath, ReliableTxtEncoding encoding) throws IOException, Exception {
+		this(template, filePath, encoding, false);
+	}
+	
 	public SmlStreamWriter(SmlDocument template, String filePath, ReliableTxtEncoding encoding,
 			boolean append) throws IOException, Exception {
 		Objects.requireNonNull(template);

@@ -17,11 +17,19 @@ public class SmlDocument {
 	public final ArrayList<SmlEmptyNode> EmptyNodesAfter = new ArrayList<>();
 	
 	SmlDocument() {
-		
+		this(new SmlElement("Root"));
+	}
+	
+	SmlDocument(ReliableTxtEncoding encoding) {
+		this(new SmlElement("Root"), encoding);
 	}
 	
 	public SmlDocument(String rootName) {
 		this(new SmlElement(rootName));
+	}
+	
+	public SmlDocument(String rootName, ReliableTxtEncoding encoding) {
+		this(new SmlElement(rootName), encoding);
 	}
 	
 	public SmlDocument(SmlElement root) {
@@ -109,15 +117,19 @@ public class SmlDocument {
 		return document;
 	}
 
-	public static SmlDocument parse(String content) throws IOException {
+	public static SmlDocument parse(String content) {
 		return parse(content, true);
 	}
 	
-	public static SmlDocument parse(String content, boolean preserveWhitespaceAndComments) throws IOException {
-		if (preserveWhitespaceAndComments) {
-			return SmlParser.parseDocument(content);
-		} else {
-			return SmlParser.parseDocumentNonPreserving(content);
+	public static SmlDocument parse(String content, boolean preserveWhitespaceAndComments) {
+		try {
+			if (preserveWhitespaceAndComments) {
+				return SmlParser.parseDocument(content);
+			} else {
+				return SmlParser.parseDocumentNonPreserving(content);
+			}
+		} catch (IOException exception) {
+			throw new RuntimeException();
 		}
 	}
 }

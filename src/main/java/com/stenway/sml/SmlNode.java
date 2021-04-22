@@ -3,7 +3,7 @@ package com.stenway.sml;
 import com.stenway.wsv.WsvDocument;
 import com.stenway.wsv.WsvLine;
 
-public class SmlNode {
+public abstract class SmlNode {
 	String[] whitespaces;
 	String comment;
 	
@@ -13,6 +13,9 @@ public class SmlNode {
 	}
 
 	public String[] getWhitespaces() {
+		if (whitespaces == null) {
+			return null;
+		}
 		return whitespaces.clone();
 	}
 	
@@ -30,10 +33,8 @@ public class SmlNode {
 		this.comment = comment;
 	}
 	
-	void toWsvLines(WsvDocument document, int level, String defaultIndentation, String endKeyword) {
+	abstract void toWsvLines(WsvDocument document, int level, String defaultIndentation, String endKeyword);
 		
-	}
-	
 	public void minify() {
 		whitespaces = null;
 		comment = null;

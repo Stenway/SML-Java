@@ -33,7 +33,7 @@ class SmlFileAppend {
 				file.seek(index);
 				byte b = file.readByte();
 				if (b != 0) {
-					throw new SmlParserException(-1,"New line character detection failed");
+					throw new SmlParserException(-1, "New line character detection failed");
 				}
 			}
 		}
