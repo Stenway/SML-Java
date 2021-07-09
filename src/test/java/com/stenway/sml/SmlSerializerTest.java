@@ -37,8 +37,33 @@ public class SmlSerializerTest {
 	}
 	
 	@Test
+	public void serializeElement_EndKeywordNameGiven_ShouldThrowException() {
+		try {
+			SmlElement element = new SmlElement("End");
+			SmlSerializer.serializeElement(element);
+		} catch (SmlException exception) {
+			Assert.equals(exception.getMessage(), "Element name matches the end keyword 'End'");
+			return;
+		}
+		throw new IllegalStateException("Should throw SmlException");
+	}
+	
+	@Test
 	public void serializeAttribute() {
 		SmlAttribute attribute = new SmlAttribute("Name", "Value1", "Value2");
 		Assert.equals(SmlSerializer.serializeAttribute(attribute), "Name Value1 Value2");
+	}
+	
+	@Test
+	public void serializeDocument_EndKeywordNameGiven_ShouldThrowException() {
+		try {
+			SmlDocument document = new SmlDocument("ENDE");
+			document.setEndKeyword("Ende");
+			SmlSerializer.serializeDocument(document);
+		} catch (SmlException exception) {
+			Assert.equals(exception.getMessage(), "Element name matches the end keyword 'Ende'");
+			return;
+		}
+		throw new IllegalStateException("Should throw SmlException");
 	}
 }

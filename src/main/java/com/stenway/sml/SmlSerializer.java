@@ -43,6 +43,9 @@ public class SmlSerializer {
 
 	public static void serializeElement(SmlElement element, WsvDocument wsvDocument,
 			int level, String defaultIndentation, String endKeyword) {
+		if (endKeyword != null && element.hasName(endKeyword)) {
+			throw new SmlException("Element name matches the end keyword '"+endKeyword+"'");
+		}
 		int childLevel = level + 1;
 		
 		String[] whitespaces = getWhitespaces(element.whitespaces, level, defaultIndentation);
