@@ -55,7 +55,7 @@ public class SmlParserTest {
 	@Test
 	public void parseDocumentNonPreserving_InvalidDocumentGiven_ShouldThrowException() {
 		parseDocumentNonPreserving_InvalidDocumentGiven_ShouldThrowWsvException("Root\n  FirstAttribute \"hello world\nEnd",		"String not closed (2, 30)");
-		parseDocumentNonPreserving_InvalidDocumentGiven_ShouldThrowWsvException("Root\n  FirstAttribute ab\"c\nEnd",				"Invalid double quote in value (2, 20)");
+		parseDocumentNonPreserving_InvalidDocumentGiven_ShouldThrowWsvException("Root\n  FirstAttribute ab\"c\nEnd",				"Invalid double quote after value (2, 20)");
 		parseDocumentNonPreserving_InvalidDocumentGiven_ShouldThrowWsvException("Root\n  FirstAttribute \"hello world\"a b c\nEnd",	"Invalid character after string (2, 31)");
 		parseDocumentNonPreserving_InvalidDocumentGiven_ShouldThrowWsvException("Root\n  FirstAttribute \"Line1\"/ \"Line2\"\nEnd",	"Invalid string line break (2, 26)");
 		

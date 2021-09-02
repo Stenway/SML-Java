@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.stenway</groupId>
 	<artifactId>sml</artifactId>
-	<version>0.8.1</version>
+	<version>0.8.2</version>
 	<name>SML</name>
 	<description>Stenway reference implementation of SimpleML (SML = Simple Markup Language)</description>
 	<url>https://www.simpleml.com</url>
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>com.stenway</groupId>
 			<artifactId>wsv</artifactId>
-			<version>0.8.1</version>
+			<version>0.8.2</version>
 		</dependency>
 	</dependencies>
 	<developers>
