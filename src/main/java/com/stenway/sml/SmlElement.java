@@ -168,6 +168,14 @@ public class SmlElement extends SmlNamedNode {
 				.isPresent();
 	}
 	
+	public SmlNamedNode[] nodes(String name) {
+		return Nodes.stream()
+				.filter(node -> node instanceof SmlNamedNode)
+				.map(node -> (SmlNamedNode)node)
+				.filter(attribute -> attribute.hasName(name))
+				.toArray(SmlNamedNode[]::new);
+	}
+	
 	public String getString(String attributeName) {
 		return attribute(attributeName).getString();
 	}
